@@ -3,22 +3,22 @@
 // ################## THIS IS A GENERATED FILE ##################
 // DO NOT EDIT DIRECTLY. EDIT THE CLASS EXTENSIONS IN THE CONTROL PANEL.
 
-namespace SV\ChangePostDate\XenForo\Entity
+namespace SV\ChangePostDate\XF\Entity
 {
-	class XFCP_Thread extends \XenForo\Entity\Thread {}
+	class XFCP_Thread extends \XF\Entity\Thread {}
 }
 
-namespace SV\ChangePostDate\XenForo\Pub\Controller\InlineMod
+namespace SV\ChangePostDate\XF\Pub\Controller\InlineMod
 {
-	class XFCP_Post extends \XenForo\Pub\Controller\InlineMod\Post {}
+	class XFCP_Post extends \XF\Pub\Controller\InlineMod\Post {}
 }
 
-namespace SV\ChangePostDate\XenForo\Repository\InlineMod
+namespace SV\ChangePostDate\XF\Repository\InlineMod
 {
-	class XFCP_Post extends \XenForo\Repository\InlineMod\Post {}
+	class XFCP_Post extends \XF\Repository\InlineMod\Post {}
 }
 
-namespace SV\ChangePostDate\XenForo\Repository
+namespace SV\ChangePostDate\XF\Repository
 {
-	class XFCP_Post extends \XenForo\Repository\Post {}
+	class XFCP_Post extends \XF\Repository\Post {}
 }

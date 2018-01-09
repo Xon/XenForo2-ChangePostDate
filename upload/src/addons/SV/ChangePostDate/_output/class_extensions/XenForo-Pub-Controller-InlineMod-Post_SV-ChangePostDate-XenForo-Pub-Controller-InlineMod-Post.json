@@ -1,0 +1,6 @@
+{
+    "from_class": "XenForo\\Pub\\Controller\\InlineMod\\Post",
+    "to_class": "SV\\ChangePostDate\\XenForo\\Pub\\Controller\\InlineMod\\Post",
+    "execute_order": 10,
+    "active": true
+}

@@ -1,0 +1,9 @@
+{
+    "template": "inline_mod_controls_post",
+    "description": "",
+    "execution_order": 10,
+    "enabled": true,
+    "action": "preg_replace",
+    "find": "#(\\s*)(<option value=\"deselect)#si",
+    "replace": "$1<xen:if is=\"{$inlineModOptions.datechange}\"><option value=\"datechange\">{xen:phrase sv_change_post_date}...</option></xen:if>\n$1$2"
+}

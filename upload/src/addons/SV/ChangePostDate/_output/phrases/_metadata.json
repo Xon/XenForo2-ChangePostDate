@@ -1,0 +1,50 @@
+{
+    "moderator_log_post_change_date.txt": {
+        "global_cache": false,
+        "version_id": 10000,
+        "version_string": "1.0.0",
+        "hash": "e3d86cc3d9f6a9d79f8975fa8684c143"
+    },
+    "permission.forum_SV_ChangePostDate.txt": {
+        "global_cache": false,
+        "version_id": 10000,
+        "version_string": "1.0.0",
+        "hash": "a0b234ad020c7a41da7546400f83da58"
+    },
+    "permission_forum_SV_ChangePostDate.txt": {
+        "global_cache": false,
+        "version_id": 10000,
+        "version_string": "1.0.0",
+        "hash": "a0b234ad020c7a41da7546400f83da58"
+    },
+    "sv_change_date_for_post.txt": {
+        "global_cache": false,
+        "version_id": 10000,
+        "version_string": "1.0.0",
+        "hash": "41139a9ea7fcad83c652c03985e22a0f"
+    },
+    "sv_change_post_date.txt": {
+        "global_cache": false,
+        "version_id": 10000,
+        "version_string": "1.0.0",
+        "hash": "a0b234ad020c7a41da7546400f83da58"
+    },
+    "sv_new_date.txt": {
+        "global_cache": false,
+        "version_id": 10000,
+        "version_string": "1.0.0",
+        "hash": "be52710eaaa0b2908258209b6a756f12"
+    },
+    "sv_please_enter_valid_date_format.txt": {
+        "global_cache": false,
+        "version_id": 10000,
+        "version_string": "1.0.0",
+        "hash": "2f8e14f14c9a77cd18a24b20bc6d4a4f"
+    },
+    "sv_please_select_at_most_one_post.txt": {
+        "global_cache": false,
+        "version_id": 10000,
+        "version_string": "1.0.0",
+        "hash": "b7f1ba2a92ed3cd1a417dd7154246e8a"
+    }
+}

@@ -1,14 +1,19 @@
 {
     "legacy_addon_id": "SV_ChangePostDate",
     "title": "Change Post Date",
-    "description": "",
+    "description": "Change Post Date as an inline moderator option",
     "version_id": 2000000,
     "version_string": "2.0.0",
-    "dev": "",
-    "dev_url": "",
+    "dev": "Xon",
+    "dev_url": "https://atelieraphelion.com",
     "faq_url": "",
-    "support_url": "",
+    "support_url": "https://xenforo.com/community/resources/change-post-date-by-xon.6077/",
     "extra_urls": [],
-    "require": [],
+    "require": {
+        "php": [
+            "5.6.0",
+            "PHP 5.6.0+"
+        ]
+    },
     "icon": ""
 }

@@ -7,4 +7,5 @@ namespace SV\ChangePostDate\XF\Repository;
  */
 class Post extends XFCP_Post
 {
+
 }

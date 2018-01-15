@@ -1,21 +1,21 @@
-<xen:title>{xen:phrase sv_change_date_for_post, 'number={xen:calc '{$post.position} + 1'}'}</xen:title>
-<form action="{xen:link 'inline-mod/post/datechange'}" method="post" class="xenForm formOverlay">
-    <fieldset>
-        <dl class="ctrlUnit">
-            <dt><label>{xen:phrase sv_new_date}:</label></dt>
-            <dd><input type="text" name="datechange" value="{$post.formatted_date}" class="textCtrl" /></dd>
-        </dl>
-        <dl class="ctrlUnit submitUnit">
-            <dt></dt>
-            <dd><input type="submit" value="{xen:phrase sv_change_post_date}" class="button primary" accesskey="s" /></dd>
-        </dl>
-    </fieldset>
+<xf:set var="$number" value="{{ $post.position + 1 }}"/>
+<xf:title>{{ phrase ('sv_change_date_for_post', {'number': $number}) }}</xf:title>
 
-    <xen:foreach loop="$postIds" value="$postId">
-        <input type="hidden" name="posts[]" value="{$postId}" />
-    </xen:foreach>
+<xf:form action="{{ link('inline-mod') }}" class="block" ajax="true">
+    <div class="block-container">
+        <div class="block-body">
+            <xf:textboxrow name="datechange" value="{$formatted_date}" label="{{ phrase('sv_new_date') }}" />
+            <xf:submitrow icon="save" />
+        </div>
+    </div>
 
-    <input type="hidden" name="_xfConfirm" value="1" />
-    <input type="hidden" name="redirect" value="{$redirect}" />
-    <input type="hidden" name="_xfToken" value="{$visitor.csrf_token_page}" />
-</form>
+    <xf:foreach loop="$posts" value="$post">
+        <xf:hiddenval name="ids[]">{$post.post_id}</xf:hiddenval>
+    </xf:foreach>
+
+    <xf:hiddenval name="type">post</xf:hiddenval>
+    <xf:hiddenval name="action">datechange</xf:hiddenval>
+    <xf:hiddenval name="confirmed">1</xf:hiddenval>
+
+    <xf:redirect url="{$redirect}" />
+</xf:form>

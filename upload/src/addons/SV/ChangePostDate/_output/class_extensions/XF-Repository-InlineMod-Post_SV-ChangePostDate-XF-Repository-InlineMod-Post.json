@@ -1,6 +1,0 @@
-{
-    "from_class": "XF\\Repository\\InlineMod\\Post",
-    "to_class": "SV\\ChangePostDate\\XF\\Repository\\InlineMod\\Post",
-    "execute_order": 10,
-    "active": true
-}

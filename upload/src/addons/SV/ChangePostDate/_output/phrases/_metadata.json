@@ -1,4 +1,10 @@
 {
+    "mod_log.post_change_date.txt": {
+        "global_cache": false,
+        "version_id": 2000000,
+        "version_string": "2.0.0",
+        "hash": "1fa8914aa03972bbf754dcd74db282de"
+    },
     "moderator_log_post_change_date.txt": {
         "global_cache": false,
         "version_id": 10000,

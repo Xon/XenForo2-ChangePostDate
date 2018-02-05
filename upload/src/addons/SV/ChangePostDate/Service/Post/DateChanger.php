@@ -108,11 +108,21 @@ class DateChanger extends AbstractService
             foreach ($this->targets as $post)
             {
                 $oldDate = isset($this->oldDates[$post->post_id]) ? $this->oldDates[$post->post_id] : 0;
+                $dt = new \DateTime('@' . $oldDate);
+                $dt->setTimezone(new \DateTimeZone(\XF::visitor()->timezone));
+                // ISO 8601
+                $oldDateISO8601 = $dt->format('c');
+
+                $dt = new \DateTime('@' . $post->post_date);
+                $dt->setTimezone(new \DateTimeZone(\XF::visitor()->timezone));
+                // ISO 8601
+                $newDateISO8601 = $dt->format('c');
+
                 $this->app->logger()->logModeratorAction(
                     'post', $post, 'change_date',
                     [
-                        'old_date' => strftime('c', $oldDate),
-                        'new_date' => strftime('c', $post->post_date),
+                        'old_date' => $oldDateISO8601,
+                        'new_date' => $newDateISO8601,
                     ]
                 );
             }

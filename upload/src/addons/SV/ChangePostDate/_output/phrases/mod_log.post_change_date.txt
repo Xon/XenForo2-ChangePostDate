@@ -1,0 +1,1 @@
+Post date changed from {old_date} to {new_date}

@@ -39,35 +39,17 @@ class DateChange extends AbstractAction
     protected function applyInternal(AbstractCollection $entities, array $options)
     {
         // change post date
-        foreach ($entities AS $entity)
+        $newPostDate_ISO8601 = $options['datechange'];
+        $newPostDate = strtotime($newPostDate_ISO8601);
+        if (!$newPostDate)
         {
-            /** @var \XF\Entity\Post $entity */
-            $this->applyToEntity($entity, $options);
+            throw new \InvalidArgumentException(\XF::phrase('sv_please_enter_valid_date_format'));
         }
 
-        // rebuild thread
-        if ($entities)
-        {
-            // Rebuild first/last post info
-            /** @var \XF\Entity\Thread $thread */
-            $thread = $entities->first()->Thread;
-            $thread->rebuildFirstPostInfo();
-            $thread->rebuildLastPostInfo();
-            $thread->save();
+        /** @var \SV\ChangePostDate\Service\Post\DateChanger $dateChanger */
+        $dateChanger = $this->app()->service('SV\ChangePostDate:Post\DateChanger', $entities);
 
-            // Re-order the posts in the thread according to date
-            /** @var \XF\Repository\Thread $threadRepo */
-            $threadRepo = \XF::repository('XF:Thread');
-            $threadRepo->rebuildThreadPostPositions($thread->thread_id);
-
-            // Queue the search index updater
-            $this->app()->jobManager()->enqueue(
-                'XF:SearchIndex', [
-                'content_type' => 'post',
-                'content_ids'  => $thread->post_ids
-            ]
-            );
-        }
+        $dateChanger->changeDate($newPostDate);
     }
 
     protected function canApplyToEntity(Entity $entity, array $options, &$error = null)
@@ -78,16 +60,7 @@ class DateChange extends AbstractAction
 
     protected function applyToEntity(Entity $entity, array $options)
     {
-        // change post date
-        $newPostDate_ISO8601 = $options['datechange'];
-        $newPostDate = strtotime($newPostDate_ISO8601);
-        if (!$newPostDate)
-        {
-            throw new \InvalidArgumentException(\XF::phrase('sv_please_enter_valid_date_format'));
-        }
-
-        $entity->set('post_date', $newPostDate);
-        $entity->save();
+        throw new \LogicException("applyToEntity should not be called on change post date");
     }
 
     public function renderForm(AbstractCollection $entities, Controller $controller)

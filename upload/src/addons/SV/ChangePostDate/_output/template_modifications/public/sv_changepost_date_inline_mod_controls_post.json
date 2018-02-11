@@ -1,7 +1,7 @@
 {
     "template": "inline_mod_controls_post",
     "description": "",
-    "execution_order": 10,
+    "execution_order": 6077,
     "enabled": true,
     "action": "preg_replace",
     "find": "#(\\s*)(<option value=\"deselect)#si",

@@ -27,6 +27,9 @@ class DateChanger extends AbstractService
         $this->targets = $targets;
     }
 
+    /**
+     * @param bool $log
+     */
     public function setLog($log)
     {
         $this->log = (bool)$log;
@@ -70,7 +73,7 @@ class DateChanger extends AbstractService
         foreach ($this->targets as $post)
         {
             $post->post_date = $this->newPostDate;
-            $post->save();
+            $post->save(true, false);
         }
     }
 
@@ -84,7 +87,7 @@ class DateChanger extends AbstractService
             // Rebuild first/last post info
             $thread->rebuildFirstPostInfo();
             $thread->rebuildLastPostInfo();
-            $thread->save();
+            $thread->save(true, false);
             // Re-order the posts in the thread according to date
             $threadRepo->rebuildThreadPostPositions($threadId);
         }

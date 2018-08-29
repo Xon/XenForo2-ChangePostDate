@@ -4,6 +4,10 @@ namespace SV\ChangePostDate\XF\Entity;
 
 class Post extends XFCP_Post
 {
+    /**
+     * @param string|null $error
+     * @return bool
+     */
     public function canChangePostDate(&$error = null)
     {
         $thread = $this->Thread;
@@ -13,9 +17,7 @@ class Post extends XFCP_Post
             return false;
         }
 
-        $nodeId = $thread->node_id;
-
-        if ($visitor->hasNodePermission($nodeId, 'SV_ChangePostDate'))
+        if ($visitor->hasNodePermission($thread->node_id, 'SV_ChangePostDate'))
         {
             return true;
         }

@@ -31,6 +31,13 @@ class DateChange extends AbstractAction
 
                 return false;
             }
+
+            $newPostDate_ISO8601 = isset($options['datechange']) ? $options['datechange'] : '';
+            $newPostDate = @strtotime($newPostDate_ISO8601);
+            if (!$newPostDate)
+            {
+                $error[] ='sv_please_enter_valid_date_format';
+            }
         }
 
         return $result;
@@ -39,8 +46,8 @@ class DateChange extends AbstractAction
     protected function applyInternal(AbstractCollection $entities, array $options)
     {
         // change post date
-        $newPostDate_ISO8601 = $options['datechange'];
-        $newPostDate = strtotime($newPostDate_ISO8601);
+        $newPostDate_ISO8601 = isset($options['datechange']) ? $options['datechange'] : '';
+        $newPostDate = @strtotime($newPostDate_ISO8601);
         if (!$newPostDate)
         {
             throw new \InvalidArgumentException(\XF::phrase('sv_please_enter_valid_date_format'));

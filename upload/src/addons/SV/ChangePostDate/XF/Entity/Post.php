@@ -8,7 +8,7 @@ class Post extends XFCP_Post
      * @param string|null $error
      * @return bool
      */
-    public function canChangePostDate(&$error = null)
+    public function canChangePostDate(/** @noinspection PhpUnusedParameterInspection */ &$error = null)
     {
         $thread = $this->Thread;
         $visitor = \XF::visitor();

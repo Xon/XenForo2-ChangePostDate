@@ -62,6 +62,8 @@ class DateChanger extends AbstractService
 
         $db->commit();
 
+        $this->cleanupActions();
+
         return true;
     }
 
@@ -92,17 +94,6 @@ class DateChanger extends AbstractService
 
     protected function finalActions()
     {
-        foreach ($this->targetThreads as $thread)
-        {
-            $this->app->jobManager()->enqueue(
-                'XF:SearchIndex',
-                [
-                    'content_type' => 'post',
-                    'content_ids'  => $thread->post_ids,
-                ]
-            );
-        }
-
         if ($this->log)
         {
             foreach ($this->targets as $post)
@@ -126,6 +117,20 @@ class DateChanger extends AbstractService
                     ]
                 );
             }
+        }
+    }
+
+    public function cleanupActions()
+    {
+        foreach ($this->targetThreads as $thread)
+        {
+            $this->app->jobManager()->enqueue(
+                'XF:SearchIndex',
+                [
+                    'content_type' => 'post',
+                    'content_ids'  => $thread->post_ids,
+                ]
+            );
         }
     }
 }

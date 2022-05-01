@@ -50,7 +50,7 @@ class DateChange extends AbstractAction
         $newPostDate = @strtotime($newPostDate_ISO8601);
         if (!$newPostDate)
         {
-            throw new \InvalidArgumentException(\XF::phrase('sv_please_enter_valid_date_format'));
+            throw \XF::phrasedException('sv_please_enter_valid_date_format');
         }
 
         /** @var \SV\ChangePostDate\Service\Post\DateChanger $dateChanger */

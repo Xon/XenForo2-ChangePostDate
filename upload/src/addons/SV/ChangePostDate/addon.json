@@ -10,10 +10,8 @@
     "support_url": "https://xenforo.com/community/resources/change-post-date-by-xon.6077/",
     "extra_urls": [],
     "require": {
-        "php": [
-            "5.6.0",
-            "PHP 5.6.0+"
-        ]
+        "XF": [2020070, "XenForo 2.2.0+"],
+        "php": ["7.0.0", "PHP 7.0.0+"]
     },
     "icon": ""
 }

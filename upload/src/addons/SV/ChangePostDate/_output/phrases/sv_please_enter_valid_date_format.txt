@@ -1,1 +1,1 @@
-Please enter a valid date format
+Please enter a valid date format (Recommend ISO 8601, eg 2000-12-31 23:55)

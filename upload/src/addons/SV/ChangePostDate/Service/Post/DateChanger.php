@@ -27,15 +27,12 @@ class DateChanger extends AbstractService
         $this->targets = $targets;
     }
 
-    /**
-     * @param bool $log
-     */
-    public function setLog($log)
+    public function setLog(bool $log)
     {
-        $this->log = (bool)$log;
+        $this->log = $log;
     }
 
-    public function changeDate($newPostDate)
+    public function changeDate(int $newPostDate): bool
     {
         $db = $this->db();
 
@@ -95,7 +92,7 @@ class DateChanger extends AbstractService
 
     protected function finalActions()
     {
-        foreach ($this->targetThreads as $threadId => $thread)
+        foreach ($this->targetThreads as $thread)
         {
             $this->app->jobManager()->enqueue(
                 'XF:SearchIndex',
@@ -110,7 +107,7 @@ class DateChanger extends AbstractService
         {
             foreach ($this->targets as $post)
             {
-                $oldDate = isset($this->oldDates[$post->post_id]) ? $this->oldDates[$post->post_id] : 0;
+                $oldDate = $this->oldDates[$post->post_id] ?? 0;
                 $dt = new \DateTime('@' . $oldDate);
                 $dt->setTimezone(new \DateTimeZone(\XF::visitor()->timezone));
                 // ISO 8601

@@ -5,14 +5,20 @@ namespace SV\ChangePostDate\XF\Entity;
 class Post extends XFCP_Post
 {
     /**
-     * @param string|null $error
+     * @param \XF\Phrase|string|null $error
      * @return bool
+     * @noinspection PhpUnusedParameterInspection
      */
-    public function canChangePostDate(&$error = null)
+    public function canChangePostDate(&$error = null): bool
     {
         $thread = $this->Thread;
+        if (!$thread)
+        {
+            return false;
+        }
+
         $visitor = \XF::visitor();
-        if (!$visitor->user_id || !$thread)
+        if (!$visitor->user_id)
         {
             return false;
         }

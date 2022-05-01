@@ -9,16 +9,16 @@ use XF\Mvc\Controller;
 use XF\Mvc\Entity\AbstractCollection;
 use XF\Mvc\Entity\Entity;
 use XF\InlineMod\AbstractAction;
-
+use XF\Mvc\Reply\AbstractReply;
 
 class DateChange extends AbstractAction
 {
-    public function getTitle()
+    public function getTitle(): \XF\Phrase
     {
         return \XF::phrase('sv_change_post_date');
     }
 
-    protected function canApplyInternal(AbstractCollection $entities, array $options, &$error)
+    protected function canApplyInternal(AbstractCollection $entities, array $options, &$error): bool
     {
         $result = parent::canApplyInternal($entities, $options, $error);
 
@@ -32,7 +32,7 @@ class DateChange extends AbstractAction
                 return false;
             }
 
-            $newPostDate_ISO8601 = isset($options['datechange']) ? $options['datechange'] : '';
+            $newPostDate_ISO8601 = $options['datechange'] ?? '';
             $newPostDate = @strtotime($newPostDate_ISO8601);
             if (!$newPostDate)
             {
@@ -46,7 +46,7 @@ class DateChange extends AbstractAction
     protected function applyInternal(AbstractCollection $entities, array $options)
     {
         // change post date
-        $newPostDate_ISO8601 = isset($options['datechange']) ? $options['datechange'] : '';
+        $newPostDate_ISO8601 = $options['datechange'] ?? '';
         $newPostDate = @strtotime($newPostDate_ISO8601);
         if (!$newPostDate)
         {
@@ -59,7 +59,7 @@ class DateChange extends AbstractAction
         $dateChanger->changeDate($newPostDate);
     }
 
-    protected function canApplyToEntity(Entity $entity, array $options, &$error = null)
+    protected function canApplyToEntity(Entity $entity, array $options, &$error = null): bool
     {
         /** @var \SV\ChangePostDate\XF\Entity\Post $entity */
         return $entity->canChangePostDate($error);
@@ -70,7 +70,7 @@ class DateChange extends AbstractAction
         throw new \LogicException("applyToEntity should not be called on change post date");
     }
 
-    public function renderForm(AbstractCollection $entities, Controller $controller)
+    public function renderForm(AbstractCollection $entities, Controller $controller): AbstractReply
     {
         $post = $entities->first();
         $dt = new DateTime('@' . $post['post_date']);
@@ -87,7 +87,7 @@ class DateChange extends AbstractAction
         return $controller->view('XF:Public:InlineMod\Post\DateChange', 'inline_mod_post_datechange', $viewParams);
     }
 
-    public function getFormOptions(AbstractCollection $entities, Request $request)
+    public function getFormOptions(AbstractCollection $entities, Request $request): array
     {
         return [
             'datechange' => $request->filter('datechange', 'str'),

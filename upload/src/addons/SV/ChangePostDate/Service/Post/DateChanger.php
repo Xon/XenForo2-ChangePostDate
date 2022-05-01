@@ -122,8 +122,11 @@ class DateChanger extends AbstractService
 
     public function cleanupActions()
     {
+        $forums = [];
+
         foreach ($this->targetThreads as $thread)
         {
+            $forums[$thread->node_id] = $thread->Forum;
             $this->app->jobManager()->enqueue(
                 'XF:SearchIndex',
                 [
@@ -131,6 +134,12 @@ class DateChanger extends AbstractService
                     'content_ids'  => $thread->post_ids,
                 ]
             );
+        }
+
+        foreach($forums as $forum)
+        {
+            $forum->rebuildCounters();
+            $forum->save();
         }
     }
 }
